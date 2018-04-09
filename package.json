@@ -1,0 +1,23 @@
+{
+  "name": "cypress-eslint",
+  "version": "1.0.0",
+  "description": "Cypress plugin that will run linting via ESLint on your spec files as they are loaded and display errors in console",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cypress",
+    "cypress-plugin",
+    "eslint"
+  ],
+  "author": {
+    "name": "Heather Roberts",
+    "email": "heather.roberts427@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@cypress/browserify-preprocessor": "^1.0.2",
+    "eslint": "^4.19.1"
+  }
+}
