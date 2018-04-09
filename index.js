@@ -1,6 +1,6 @@
 const path = require('path');
 const browserifyPreprocessor = require('@cypress/browserify-preprocessor');
-const CLIEngine = require('eslint').CLIEngine;
+const { CLIEngine } = require('eslint');
 const chalk = require('chalk');
 
 const cli = new CLIEngine();
@@ -12,8 +12,8 @@ const cli = new CLIEngine();
 const padString = (string, longest) => {
   if (string.length < longest) {
     Array(longest - string.length)
-    .fill(null)
-    .forEach(() => { string += ' '; });
+      .fill(null)
+      .forEach(() => { string += ' '; });
   }
   return string;
 };
@@ -32,11 +32,11 @@ const logResults = (filePath, messages, type, colour) => {
     return curr > prev ? curr : prev;
   };
   const longestLineChars = messages
-  .map(message => `${message.line}:${message.column}`.length)
-  .reduce(findLargestReducer, 0);
+    .map(message => `${message.line}:${message.column}`.length)
+    .reduce(findLargestReducer, 0);
   const longestMsgChars = messages
-  .map(message => message.message.length)
-  .reduce(findLargestReducer, 0);
+    .map(message => message.message.length)
+    .reduce(findLargestReducer, 0);
 
   messages.forEach((message) => {
     const lineText = padString(`${message.line}:${message.column}`, longestLineChars);
@@ -50,6 +50,11 @@ const logResults = (filePath, messages, type, colour) => {
   });
 };
 
+/**
+ * Runs linting via ESLint on file
+ * If preprocessor is provided will call this once linting is complete, otherwise will default to using
+ * Cypress' @cypress/browserify-preprocessor
+ */
 const lint = preprocessor => (file) => {
   const report = cli.executeOnFiles([file.filePath]);
   if (report.errorCount > 0) {
