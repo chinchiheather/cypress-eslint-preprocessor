@@ -4,7 +4,7 @@
   "description": "Cypress plugin that will run linting via ESLint on your spec files as they are loaded and display errors in console",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js",
+    "lint": "eslint index.js test/index.spec.js logger.js",
     "test": "mocha --require babel-core/register --reporter spec \"test/index.spec.js\"",
     "test:watch": "npm test -- --watch",
     "prepublish": "npm run lint && npm test"

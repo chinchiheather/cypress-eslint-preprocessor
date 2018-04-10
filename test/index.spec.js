@@ -1,6 +1,8 @@
 import sinon from 'sinon';
 import mockery from 'mockery';
 
+/* eslint-env mocha */
+
 describe('cypress-eslint', () => {
   const cypressEslint = (file, preprocessor) => {
     const linter = require('../index');
@@ -43,7 +45,7 @@ describe('cypress-eslint', () => {
   }
 
   function mockEsLintCliEngine() {
-    function mockCliEngine() {
+    function cliEngine() {
       this.executeOnFiles = executeOnFilesSpy;
     }
     lintingReport = {
@@ -51,15 +53,15 @@ describe('cypress-eslint', () => {
       warningCount: 0
     };
     executeOnFilesSpy = sinon.spy(() => lintingReport);
-    mockery.registerMock('eslint', { CLIEngine: mockCliEngine });
+    mockery.registerMock('eslint', { CLIEngine: cliEngine });
   }
 
   function mockLogger() {
     logSpy = sinon.spy();
-    function mockLogger() {
+    function Logger() {
       this.log = logSpy;
     }
-    mockery.registerMock('./logger', mockLogger);
+    mockery.registerMock('./logger', Logger);
   }
 
   function mockChalk() {
@@ -67,7 +69,7 @@ describe('cypress-eslint', () => {
       red: sinon.spy(string => string),
       yellow: sinon.spy(string => string),
       gray: sinon.spy(string => string),
-      white: sinon.spy(string => string),
+      white: sinon.spy(string => string)
     };
     chalkSpy = { ...colourSpies, bold: { ...colourSpies } };
     mockery.registerMock('chalk', chalkSpy);
@@ -193,7 +195,8 @@ describe('cypress-eslint', () => {
       cypressEslint(file);
 
       logSpy.getCalls().forEach((call) => {
-        const notCalledWithWarningMessage = call.notCalledWithMatch(value => value.indexOf('"a" is not defined') !== -1);
+        const notCalledWithWarningMessage = call.notCalledWithMatch(value =>
+          value.indexOf('"a" is not defined') !== -1);
         sinon.assert.match(notCalledWithWarningMessage, true);
       });
     });
@@ -310,7 +313,8 @@ describe('cypress-eslint', () => {
       cypressEslint(file);
 
       logSpy.getCalls().forEach((call) => {
-        const notCalledWithErrorMessage = call.notCalledWithMatch(value => value.indexOf('Expected indentation of 2 spaces but found 4') !== -1);
+        const notCalledWithErrorMessage = call.notCalledWithMatch(value =>
+          value.indexOf('Expected indentation of 2 spaces but found 4') !== -1);
         sinon.assert.match(notCalledWithErrorMessage, true);
       });
     });
