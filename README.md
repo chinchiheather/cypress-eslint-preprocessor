@@ -38,9 +38,9 @@ If you are using another plugin on the `file:preprocessor` event, pass this in a
 // cypress/plugins/index.js
 
 const cypressEslint = require('cypress-eslint-preprocessor');
-const babelEsX = require('cypress-babel-esx-preprocessor');
+const cypressBabelEsX = require('cypress-babel-esx-preprocessor');
 
 module.exports = (on) => {
-    on('file:preprocessor', cypressEslint(babelEsX()));
+    on('file:preprocessor', cypressEslint(cypressBabelEsX()));
 };
 ```
