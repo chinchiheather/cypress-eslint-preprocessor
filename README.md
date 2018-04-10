@@ -5,6 +5,9 @@ This uses the `file:preprocessor` event which means it will lint files as they a
 
 This will use the `.eslintrc` file in your project root combined with the `.eslintrc` file in your Cypress directory (if you have one). This means you can easily set custom rules just for your Cypress spec files.
 
+## Example
+![example](https://chinchiheather.github.io/cypress-eslint-preprocessor/img/console-example.png)
+
 ## Install
 
 ```bash
