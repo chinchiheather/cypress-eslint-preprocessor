@@ -9,7 +9,7 @@ This will use the `.eslintrc` file in your project root combined with the `.esli
 
 ```bash
 # npm
-npm i cypress-eslint --save-dev
+npm install cypress-eslint --save-dev
 
 # yarn
 yarn add cypress-eslint --dev
