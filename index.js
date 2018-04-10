@@ -2,8 +2,10 @@ const path = require('path');
 const browserifyPreprocessor = require('@cypress/browserify-preprocessor');
 const { CLIEngine } = require('eslint');
 const chalk = require('chalk');
+const Logger = require('./logger');
 
 const cli = new CLIEngine();
+const logger = new Logger();
 
 /**
  * If string's length is less than longest, appends spaces until it reaches the
@@ -22,10 +24,10 @@ const padString = (string, longest) => {
  * Logs the linting results to the console
  */
 const logResults = (filePath, messages, type, colour) => {
-  console.log(chalk.bold[colour](`\n${type.toUpperCase()} in ${filePath}`));
+  logger.log(chalk.bold[colour](`\n${type.toUpperCase()} in ${filePath}`));
 
   const relativePath = path.relative(process.cwd(), filePath);
-  console.log(chalk.bold[colour](`\n${relativePath}`));
+  logger.log(chalk.bold[colour](`\n${relativePath}`));
 
   // find the messages with the longest strings for fields so we can nicely align them
   const findLargestReducer = (prev, curr) => {
@@ -46,7 +48,7 @@ const logResults = (filePath, messages, type, colour) => {
     const error = chalk.white(errorTxt);
     const rule = chalk.gray(message.ruleId);
 
-    console.log(`  ${line}  ${type}  ${error}  ${rule}`);
+    logger.log(`  ${line}  ${type}  ${error}  ${rule}`);
   });
 };
 
