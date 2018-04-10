@@ -1,6 +1,6 @@
 {
   "name": "cypress-eslint",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cypress plugin that will run linting via ESLint on your spec files as they are loaded and display errors in console",
   "main": "index.js",
   "scripts": {
