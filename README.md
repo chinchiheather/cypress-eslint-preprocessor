@@ -25,6 +25,7 @@ yarn add cypress-eslint-preprocessor --dev
 If you are not currently using another plugin on the `file:preprocessor` event
 ```javascript
 // cypress/plugins/index.js
+
 const cypressEslint = require('cypress-eslint-preprocessor');
 
 module.exports = (on) => {
