@@ -3,7 +3,7 @@ import mockery from 'mockery';
 
 /* eslint-env mocha */
 
-describe('cypress-eslint', () => {
+describe('cypress-eslint-preprocessor', () => {
   const cypressEslint = (file, preprocessor) => {
     const linter = require('../index');
     return linter(preprocessor)(file);
