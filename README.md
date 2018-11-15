@@ -8,7 +8,7 @@ This will use the `.eslintrc` file in your project root combined with the `.esli
 After linting has been run, it will call the default [Cypress browserify preprocessor](https://github.com/cypress-io/cypress-browserify-preprocessor) on the file, you can override this by passing in another preprocessor.
 
 ## Example
-![example](https://chinchiheather.github.io/cypress-eslint-preprocessor/img/console-example.png)
+![example](https://chinchiheather.github.io/images/cypress-eslint-preprocessor/img/console-example.png)
 
 ## Install
 
